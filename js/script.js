@@ -19,3 +19,18 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+fetch(DATA_URL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Si la respuesta es exitosa, parsea el JSON
+    })
+    .then(data => {
+        // Aquí puedes manejar los datos obtenidos de la respuesta
+        showData(data.students);
+    })
+    .catch(error => {
+        // Manejo de errores
+        console.error('There was a problem with the fetch operation:', error);
+    });
