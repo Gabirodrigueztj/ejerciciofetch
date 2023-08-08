@@ -16,6 +16,18 @@ function showData(dataArray) {
     // En la siguiente línea se utilizan "backticks" para armar el String. Más info => https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
+
+}
+async function fetchData() {
+  try {
+    const response = await fetch(DATA_URL);  // Espera a que se complete la petición fetch
+    const data = await response.json();      // Espera a que se complete la conversión a JSON
+    showData(data.students);                 // Muestra los estudiantes en el contenedor
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 }
 
-// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+fetchData();  // Llama a la función fetchData para iniciar la carga y visualización de los estudiantes
+
+
